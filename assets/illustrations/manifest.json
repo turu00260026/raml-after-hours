@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "display": {
+    "position": "above_story_text",
+    "aspect_ratio": "16:9",
+    "mobile_object_position": "center",
+    "fallback": "event_cast_standing_art"
+  },
+  "events": {
+    "EV_C2_SF_DECAY": {
+      "src": "assets/illustrations/day02_opening_riko_nori.png",
+      "alt": "火曜夜の司令室でSF汚染の減衰を観測するリコとノリ"
+    },
+    "EV_C2_RENTON_DELAY": {
+      "src": "assets/illustrations/day02_renton_clinic.png",
+      "alt": "本業のリハビリ対応を優先しながらRAML招集を受けるレントン"
+    },
+    "EV_C2_KEISUKE_V2": {
+      "src": "assets/illustrations/day02_keisuke_tool_v2.png",
+      "alt": "GADGET工房で自作ツールv2を披露するケイスケと猫型メカ"
+    },
+    "EV_C3_MAHO_SECOND": {
+      "src": "assets/illustrations/day08_magical_shojo_second.png",
+      "alt": "ショウから魔法ショウ女へ二度目の変身が進む瞬間"
+    },
+    "EV_C4_FINAL_JUDGMENT": {
+      "src": "assets/illustrations/day14_after_hours_group.png",
+      "alt": "最終判定後にRAML司令室を退出するリコ、ノリ、レントン、ショウ、ケイスケ"
+    }
+  }
+}

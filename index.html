@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071014">
+  <meta name="description" content="RAML After Hours・全14日と8つの結末を遊べるRPG風ADV">
+  <title>RAML After Hours | Full Game</title>
+  <link rel="stylesheet" href="event.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="boot" id="bootScreen">
+    <div class="boot-code">REAL-LIFE AFTER-HOURS MISSION LAB</div>
+    <div class="boot-mark" aria-hidden="true"><i></i><span>R</span><i></i></div>
+    <p>FULL SERIES / 14 DAYS / 8 ENDINGS</p>
+    <h1>世界征服は、<em>定時後に始まる。</em></h1>
+    <p class="boot-lead">世界の法則が書き換わる夜も、<br>保育園からの電話には出なければならない。</p>
+    <button class="start-button" id="startButton" type="button"><span>Day 1を開始</span><small>START CHAPTER 01</small></button>
+    <button class="start-button resume-button is-hidden" id="resumeButton" type="button"><span>続きから</span><small id="resumeLabel">CONTINUE SAVED GAME</small></button>
+    <div class="boot-note">全14日・全4章・8END収録 / 各日の終了時に自動セーブ</div>
+  </div>
+
+  <div class="game-shell is-hidden" id="gameShell">
+    <header class="topbar">
+      <div class="wordmark"><b>RAML</b><span>AFTER HOURS</span></div>
+      <div class="mission-title">
+        <small>EV_C1_KANSOKU</small>
+        <strong>観測室、21時47分</strong>
+      </div>
+      <div class="top-actions">
+        <button class="icon-button" id="muteButton" type="button" aria-pressed="false">音声: ON</button>
+        <button class="icon-button" id="restartButton" type="button">RESTART</button>
+      </div>
+    </header>
+
+    <div class="mission-strip">
+      <span><i></i> OBSERVATION ACTIVE</span>
+      <p id="objectiveText">観測記録を確認する</p>
+      <b id="phaseText">PHASE / OBSERVATION</b>
+    </div>
+
+    <div class="game-grid">
+      <aside class="side-panel personnel-panel" data-asset-id="ui_speaker_slots_rico_nori_01">
+        <div class="panel-label">PERSONNEL / 現在席</div>
+        <article class="person-card is-speaking" id="ricoCard">
+          <div class="person-monogram person-portrait person-portrait-rico" aria-hidden="true">
+            <img src="assets/characters/03_riko.png" alt="">
+          </div>
+          <div><small>COMMAND</small><b>リコ</b><span>司令官</span></div>
+          <em id="ricoStatus">保育園着信</em>
+        </article>
+        <article class="person-card" id="noriCard">
+          <div class="person-monogram person-portrait person-portrait-nori" aria-hidden="true">
+            <img src="assets/characters/04_nori.png" alt="">
+          </div>
+          <div><small>ANALYSIS</small><b>ノリ</b><span>参謀</span></div>
+          <em>審判疲労 Lv2</em>
+        </article>
+
+        <div class="panel-label sub-label">MOBILIZE / 応答</div>
+        <div class="response-list">
+          <p><span>レントン</span><b>本業対応中</b></p>
+          <p><span>ショウ</span><b>アルパカ牧場</b></p>
+        </div>
+
+        <div class="life-rule">
+          <span>LIFE FIRST</span>
+          <p>生活上の事情はデバフではない。<br>対処の条件そのもの。</p>
+        </div>
+      </aside>
+
+      <main class="stage" id="stage" data-asset-id="bg_command_room_night_01">
+        <div class="stage-visual" id="stageVisual">
+          <div class="room-grid" data-asset-id="bg_command_room_night_01" aria-hidden="true"></div>
+          <div class="scene-composition is-hidden" id="sceneComposition" data-layout="duo" aria-label="会話中の登場人物"></div>
+          <div class="city-map" id="cityMap" data-asset-id="ui_observation_monitor_01" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><span>R = 180m</span>
+          </div>
+          <div class="fragment-frame is-hidden" id="fragmentFrame" data-asset-id="bg_observation_black_01">
+            <img id="fragmentImage" src="" alt="観測対象資料・断片01">
+            <div class="tracking-lines" data-asset-id="fx_observation_scan_01"><i></i><i></i><i></i></div>
+            <div class="outline-misregister" id="outlineMisregister" data-asset-id="fx_outline_misregister_01" aria-hidden="true"><i></i><i></i></div>
+            <span id="fragmentNumber">FRAGMENT / 01</span>
+          </div>
+
+          <div class="phone-card is-hidden" id="phoneCard" role="status" data-asset-id="ui_phone_hoikuen_01">
+            <small>生活回線 / INCOMING</small>
+            <b>保育園</b>
+            <span id="phoneStatus">着信中</span>
+          </div>
+
+          <div class="hostile-alert is-hidden" id="hostileAlert" role="alert" data-asset-id="ui_hostile_warning_01">
+            <div><span>!</span><small>CLASSIFICATION ERROR</small></div>
+            <b>敵性通信を検出</b>
+            <p>発信源：生活圏／教育施設<br>脅威分類：保護対象への接触要求<br>推奨：遮断・逆探知</p>
+          </div>
+
+          <div class="countdown is-hidden" id="countdown" role="timer" data-asset-id="ui_countdown_30_01">
+            <small>ANALYSIS LIMIT</small><b id="countdownValue">00:30</b><span>着信は継続中</span>
+          </div>
+
+          <div class="observation-readout" id="observationReadout">
+            <small>REALITY CONSISTENCY</small>
+            <b>LOW</b>
+            <span>SF LAYER / 60</span>
+          </div>
+        </div>
+
+        <section class="story-console" id="storyConsole" aria-label="会話と選択">
+          <div class="scene-kicker"><span id="sceneCode">SC-01 / 観測映像</span><b id="clockText">DAY 01 — 21:47</b></div>
+          <div class="dialogue" id="dialogue" aria-live="polite"></div>
+          <div class="choices is-hidden" id="choices" data-asset-id="ui_choice_kansoku_01" aria-label="初動判断"></div>
+          <div class="story-actions">
+            <p id="instructionText">観測を進めてください。</p>
+            <button class="continue-button" id="continueButton" type="button">次の断片へ <span>→</span></button>
+          </div>
+        </section>
+      </main>
+
+      <aside class="side-panel telemetry-panel">
+        <div class="panel-label">LIVE PARAMETERS / 観測値</div>
+        <div class="metric time-metric"><span>DAY SYSTEM</span><b id="dayValue">DAY 01 / 21:47</b><small id="dayPhase">observation</small></div>
+        <div class="metric meter"><span>RICO / LIFE LOAD</span><b id="ricoLifeValue">65</b><i><em id="ricoLifeBar" style="width:65%"></em></i></div>
+        <div class="metric meter"><span>NORI / LIFE LOAD</span><b id="noriLifeValue">70</b><i><em id="noriLifeBar" style="width:70%"></em></i></div>
+        <div class="metric meter genre"><span>GENRE / SF</span><b id="sfValue">60</b><i><em id="sfBar" style="width:60%"></em></i></div>
+        <div class="metric meter"><span>ANALYSIS LEVEL</span><b id="analysisValue">10</b><i><em id="analysisBar" style="width:10%"></em></i></div>
+
+        <div class="mini-grid">
+          <div><span>主役度</span><b id="leadValue">R 10 / N 10</b></div>
+          <div><span>記録</span><b id="logValue">0 / 2</b></div>
+          <div><span>END</span><b>未判定</b></div>
+          <div><span>次工程</span><b id="nextValue">観測中</b></div>
+        </div>
+
+        <div class="event-scope"><span>EVENT SCOPE</span><p>全14日を収録。生活負荷・ジャンル汚染・主役度を引き継ぎ、Day 14夜の8ENDへ進みます。</p></div>
+      </aside>
+    </div>
+
+    <footer class="footer-status">
+      <span id="saveIndicator">AUTO SAVE / END OF EACH DAY</span>
+      <span>生活が本体の大人たちが、副業のように世界を救う。</span>
+      <span>BUILD RAML 1.0</span>
+    </footer>
+  </div>
+
+  <section class="chapter-shell is-hidden" id="chapterShell" aria-label="RAML After Hours 第1章 Day 1">
+    <header class="chapter-topbar">
+      <div class="chapter-brand"><b>RAML</b><span>DAY 01 / AFTER HOURS</span></div>
+      <div class="chapter-progress" id="chapterProgress" aria-label="章の進行状況"></div>
+      <button class="icon-button" type="button" onclick="window.location.reload()">最初から</button>
+    </header>
+
+    <div class="chapter-grid">
+      <aside class="chapter-rail chapter-roster" aria-label="出動状況">
+        <div class="chapter-rail-label">MISSION ROSTER</div>
+        <div class="chapter-roster-list">
+          <div><span>COMMAND</span><b>リコ</b><small>司令室</small></div>
+          <div><span>ANALYSIS</span><b>ノリ</b><small>審判疲労 Lv2</small></div>
+          <div><span>CARE</span><b>レントン</b><small>本業対応中</small></div>
+          <div><span>POWER</span><b>ショウ</b><small>アルパカ牧場</small></div>
+          <div><span>GADGET</span><b>ケイスケ</b><small>充電状況不明</small></div>
+        </div>
+        <div class="chapter-rule"><span>OPERATING RULE</span><p>生活を消して任務を進めない。生活を条件にして、任務の進め方を選ぶ。</p></div>
+      </aside>
+
+      <main class="chapter-stage">
+        <section class="chapter-visual" id="chapterVisual" data-theme="dispatch" aria-label="イベント状況">
+          <div class="chapter-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="chapter-coordinate" aria-hidden="true"><span>N35.0</span><span>E135.0</span><span>R=180m</span></div>
+          <div class="chapter-event-heading">
+            <small id="chapterEventCode">EV_C1_DISPATCH</small>
+            <h1 id="chapterEventTitle">誰を現場へ出すか</h1>
+            <p id="chapterPhase">PHASE / DISPATCH SELECT</p>
+          </div>
+          <div class="chapter-visual-caption"><span>GENRE LAYER</span><b>REAL LIFE / ACTIVE</b></div>
+        </section>
+
+        <section class="chapter-story" aria-label="物語と選択">
+          <div class="chapter-speaker" id="chapterSpeaker">SYSTEM</div>
+          <div class="chapter-text" id="chapterText" aria-live="polite">Day 1の続行準備中。</div>
+          <div class="chapter-choices is-hidden" id="chapterChoices" aria-label="選択肢"></div>
+          <div class="chapter-actions">
+            <p id="chapterHint">台詞を読み、次へ進んでください。</p>
+            <button class="chapter-next" id="chapterNextButton" type="button">次へ <span>→</span></button>
+          </div>
+        </section>
+      </main>
+
+      <aside class="chapter-rail chapter-monitor" aria-label="現在のゲーム状態">
+        <div class="chapter-rail-label">DAY 01 TELEMETRY</div>
+        <div class="chapter-state-summary" id="chapterStateSummary"></div>
+        <div class="chapter-rail-label chapter-log-label">COLLECTION LOG</div>
+        <div class="chapter-log" id="chapterLog"><p>記録待機中</p></div>
+      </aside>
+    </div>
+
+    <section class="chapter-result-panel is-hidden" id="chapterResultPanel" aria-live="polite"></section>
+  </section>
+
+  <template id="resultTemplate">
+    <div class="result-panel">
+      <div class="result-heading"><small>OBSERVATION RESULT</small><h2></h2><p></p></div>
+      <div class="log-records" data-asset-id="ui_observation_log_01"></div>
+      <div class="delta-table" data-asset-id="ui_effect_delta_01"></div>
+      <div class="next-event"><span>NEXT / EV_C1_DISPATCH</span><b>誰を現場に出すか</b><p>この観測結果を引き継いで、Day 1の任務と生活を最後まで進めます。</p></div>
+      <div class="result-actions"><button class="continue-button replay-button" type="button">別の選択を試す ↻</button><button class="continue-button chapter-start-button" type="button">Day 1を続ける →</button></div>
+    </div>
+  </template>
+
+  <script src="chapter-data.js"></script>
+  <script src="series-content.generated.js"></script>
+  <script src="series-data.js"></script>
+  <script src="chapter-engine.js"></script>
+  <script src="event.js"></script>
+</body>
+</html>

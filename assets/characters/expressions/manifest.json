@@ -1,0 +1,66 @@
+{
+  "schema": "raml.expression-portraits.v1",
+  "framing": "shoulders_up",
+  "placement_rules": {
+    "duo": "main_or_raml_left_other_or_hostile_right",
+    "conflict": "raml_left_hostile_right",
+    "still": "event_illustration_takes_priority"
+  },
+  "expressions": ["neutral", "concern", "analysis", "alert"],
+  "characters": {
+    "rico": {
+      "neutral": "riko_neutral.png",
+      "concern": "riko_concern.png",
+      "analysis": "riko_analysis.png",
+      "alert": "riko_alert.png"
+    },
+    "nori": {
+      "neutral": "nori_neutral.png",
+      "concern": "nori_concern.png",
+      "analysis": "nori_analysis.png",
+      "alert": "nori_alert.png"
+    },
+    "renton": {
+      "neutral": "renton_neutral.png",
+      "concern": "renton_concern.png",
+      "analysis": "renton_analysis.png",
+      "alert": "renton_alert.png"
+    },
+    "sho": {
+      "neutral": "sho_neutral.png",
+      "concern": "sho_concern.png",
+      "analysis": "sho_analysis.png",
+      "alert": "sho_alert.png"
+    },
+    "keisuke": {
+      "neutral": "keisuke_neutral.png",
+      "concern": "keisuke_concern.png",
+      "analysis": "keisuke_analysis.png",
+      "alert": "keisuke_alert.png"
+    },
+    "keisuke_robo": {
+      "neutral": "keisuke_robo_neutral.png",
+      "concern": "keisuke_robo_concern.png",
+      "analysis": "keisuke_robo_analysis.png",
+      "alert": "keisuke_robo_alert.png"
+    },
+    "ryousan": {
+      "neutral": "ryousan_neutral.png",
+      "concern": "ryousan_concern.png",
+      "analysis": "ryousan_analysis.png",
+      "alert": "ryousan_alert.png"
+    },
+    "magical_shojo": {
+      "neutral": "magical_shojo_neutral.png",
+      "concern": "magical_shojo_concern.png",
+      "analysis": "magical_shojo_analysis.png",
+      "alert": "magical_shojo_alert.png"
+    },
+    "alpaca": {
+      "neutral": "alpaca_neutral.png",
+      "concern": "alpaca_concern.png",
+      "analysis": "alpaca_analysis.png",
+      "alert": "alpaca_alert.png"
+    }
+  }
+}

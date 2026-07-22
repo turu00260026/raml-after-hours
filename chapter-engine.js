@@ -406,8 +406,10 @@
   }
 
   function showLine(line, hint) {
-    runtime.dom.chapterSpeaker.textContent = line.speaker;
+    const isNarration = line.type === "narration" || line.speaker === "地の文";
+    runtime.dom.chapterSpeaker.textContent = isNarration ? "" : line.speaker;
     runtime.dom.chapterSpeaker.dataset.type = line.type;
+    setHidden(runtime.dom.chapterSpeaker, isNarration);
     runtime.dom.chapterText.textContent = line.text;
     runtime.dom.chapterText.dataset.type = line.type;
     runtime.dom.chapterHint.textContent = hint || "クリック / Enter / Space で次へ";
@@ -420,6 +422,7 @@
 
   function clearLine() {
     runtime.dom.chapterSpeaker.textContent = "";
+    setHidden(runtime.dom.chapterSpeaker, true);
     runtime.dom.chapterText.textContent = "";
   }
 

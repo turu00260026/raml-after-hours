@@ -1180,10 +1180,6 @@
         next.addEventListener("click", () => start(runtime.nextState, { eventId: runtime.nextEvent }));
         actions.appendChild(next);
       }
-      const title = makeElement("button", "chapter-next chapter-secondary", "タイトルへ");
-      title.type = "button";
-      title.addEventListener("click", () => window.location.reload());
-      actions.appendChild(title);
       runtime.dom.chapterResultPanel.replaceChildren(kicker, heading, summary, grid, actions);
       runtime.dom.chapterShell.classList.add("is-complete");
       setHidden(runtime.dom.chapterResultPanel, false);

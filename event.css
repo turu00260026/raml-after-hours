@@ -518,6 +518,12 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline
   .chapter-clear-actions { flex-direction: column; }
 }
 
+@media (max-width: 520px), (max-height: 620px) and (pointer: coarse) {
+  .chapter-story { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .chapter-next { position: fixed; z-index: 60; left: max(12px,env(safe-area-inset-left)); right: max(12px,env(safe-area-inset-right)); bottom: max(12px,env(safe-area-inset-bottom)); width: auto; min-width: 0; min-height: 56px; padding: 13px 17px; border-color: rgba(234,179,91,.9); background: linear-gradient(90deg,rgba(12,29,32,.98),rgba(5,15,18,.98)); box-shadow: 0 -16px 34px rgba(3,9,11,.88),0 0 0 1px rgba(234,179,91,.08),0 0 18px rgba(234,179,91,.1); backdrop-filter: blur(12px); }
+  .chapter-next[hidden], .chapter-next.is-hidden { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
